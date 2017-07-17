@@ -40,12 +40,27 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">مواد قسم علوم الحاسوب</div>
+                    <div class="panel-heading">مواد قسم علوم الحاسوب- اختر المواد التي اجتزتها بنجاح</div>
                     <div class=" panel-body">
                      <button class="btn btn-default"
                              :class="{'btn-success': subject.status}"
                              v-for="subject in subjects"
                              @click='togglePassedFor(subject)'>
+                         {{subject.name}}
+                     </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">المواد المسموح بتنزيلها طبقا لشجرة المواد</div>
+                    <div class=" panel-body">
+                     <button class="btn btn-warning"
+                             v-for="subject in allowed"
+                     >
                          {{subject.name}}
                      </button>
                     </div>
@@ -125,6 +140,17 @@
         methods:{
             togglePassedFor:function (subject) {
                 subject.status=! subject.status;
+            },
+            rootIsPassed:function (subject) {
+                var parent=this.subjects.filter(subject.root);
+                return parent.status
+            }
+        },
+        computed:{
+            allowed:function () {
+                return this.subjects.filter(function (subject) {
+                   return this.rootIsPassed(subject);
+                })
             }
         }
     });
