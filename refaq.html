@@ -61,7 +61,7 @@
                      <button class="btn btn-warning"
                              v-for="subject in allowed"
                      >
-                         {{subject.name}}
+                         {{subject.root}}
                      </button>
                     </div>
                 </div>
@@ -121,7 +121,7 @@
                 {code:'CS320',name:'لغة دلفي',root:'CS313',units:'',status:false},
                 {code:'152',name:'مبادئ العلوم السياسية',root:'',units:'',status:false},
 
-                {code:'CS200',name:'مبادئ حاسب',root:'',units:''},
+                {code:'CS200',name:'مبادئ حاسب',root:'',units:'',status:false},
                 {code:'GS199',name:'مبادئ هندسة كهربائية',root:'',units:'',status:false},
 
                 {code:'CS321',name:'معماية الحاسوب',root:'CS319',units:'',status:false},
@@ -135,24 +135,34 @@
 
                 {code:'CS318',name:'هندسة برمجيات',root:'CS211',units:'',status:false}
 
-            ]
-        } ,
-        methods:{
-            togglePassedFor:function (subject) {
-                subject.status=! subject.status;
-            },
-            rootIsPassed:function (subject) {
-                var parent=this.subjects.filter(subject.root);
-                return parent.status
-            }
+            ],
+            allowed: []
         },
-        computed:{
-            allowed:function () {
-                return this.subjects.filter(function (subject) {
-                   return this.rootIsPassed(subject);
-                })
-            }
+        methods: {
+            togglePassedFor: function (subject) {
+                subject.status = !subject.status;
+//                this.subjects.filter(function () {
+                this.allowed.push(subject);
+//                });            }
         }
+        }
+//        computed: {
+//            toggle: function (subject) {
+//                subject.status = !subject.status;
+////                this.subjects.filter(function () {
+////                        this.allowed.push(togglePassedFor.subject);
+////                });
+//            }
+////            rootIsPassed:function (subject) {
+////                var parent=this.subjects.filter(subject.root);
+////                return parent.status
+////            }
+////
+////            allowed:function () {
+////                return this.subjects.filter(function (subject) {
+////                   return this.rootIsPassed(subject);
+//        }
+
     });
 </script>
 
