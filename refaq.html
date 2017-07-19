@@ -38,7 +38,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-8 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">مواد قسم علوم الحاسوب- اختر المواد التي اجتزتها بنجاح</div>
                     <div class=" panel-body">
@@ -51,8 +51,13 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-2 pull-left">
+                <h1>{{subjects.length}}</h1>عدد المواد الكلي
+                <h1>{{passed}}</h1>عدد المواد تم اجتيازها بنجاح
+                <h1>{{42-passed}}</h1>عدد المواد الباقي</div>
         </div>
-<h1>{{subjects.length}}</h1>
+        </div>
+
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
@@ -60,7 +65,7 @@
                     <div class=" panel-body">
                      <button class="btn btn-warning"
                              v-for="subject in subjects"
-                             v-if="subject.allowed && ! subject.status"
+                             v-if="subject.allowed && ! subject.status || subject.root==''"
                             >
                          {{subject.name }}
                      </button>
@@ -68,7 +73,7 @@
                 </div>
             </div>
         </div>
-    </div>
+
 </div>
 
 
@@ -76,6 +81,8 @@
     var app = new Vue({
         el: '#app',
         data:{
+            passed:0,
+//            passedUnits:0,
             subjects: [
                 {code:"GS242",name:"إحصاء واحتمالات",root:"GS100",units:"",status:false,allowed:false},
                 {code:"CS313",name:"إدارة قواعد بيانات",root:"CS211",units:"",status:false,allowed:false},
@@ -143,6 +150,7 @@
         methods: {
             togglePassedFor: function (subject) {
                 subject.status = !subject.status;
+                if(subject.status) this.passed=this.passed +1; else this.passed=this.passed-1;
                 var that = subject.code;
                 this.subjects.filter(function (sub) {
                     if (sub.root == that) {
@@ -151,6 +159,7 @@
                 });
             }
         }
+
     });
 </script>
 
