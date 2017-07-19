@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-
+<h1>{{subjects.length}}</h1>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
@@ -60,7 +60,8 @@
                     <div class=" panel-body">
                      <button class="btn btn-warning"
                              v-for="subject in subjects"
-                             v-if="subject.allowed">
+                             v-if="subject.allowed && ! subject.status"
+                            >
                          {{subject.name }}
                      </button>
                     </div>
@@ -92,6 +93,8 @@
                 {code:"CS414",name:"النمذجة والمحاكاة",root:"CS210",units:"",status:false,allowed:false},
                 {code:"CS210",name:"برمجئة مرئية1 (بيسك)",root:"CS207",units:"",status:false,allowed:false},
 
+
+                {code:"CS417",name:"برمجئة مرئية2 (VB)",root:"CS210",units:4,status:false,allowed:false},
                 {code:'CS416',name:'برمجة نطم',root:'CS201',units:'',status:false,allowed:false},
 
                 {code:'CS211',name:'تحليل نطم',root:'CS201',units:'',status:false,allowed:false},
@@ -140,62 +143,14 @@
         methods: {
             togglePassedFor: function (subject) {
                 subject.status = !subject.status;
-                var  that=subject.code;
+                var that = subject.code;
                 this.subjects.filter(function (sub) {
-                    if (sub.root==that){
-                         sub.allowed=!sub.allowed;
+                    if (sub.root == that) {
+                        sub.allowed = !sub.allowed;
                     }
                 });
-
-
-//                subject.allowed = !subject.allowed;
-//                this.subjects.filter(function () {
-//                this.allowed.push(subject);
-//                });            }
-        },
-
-            isAllowed:function (subject) {
-//                var  that=subject.root;
-//                this.subjects.filter(function (sub) {
-//                    if (sub.code==that){
-//                        return sub.status
-//                    }
-//                });
             }
-        },
-        computed:{
-
-//            isAllowed:function (subject) {
-////                return this.subjects.filter(subject,function (sub) {
-////                    return subject;
-////                });
-//////                return subject.status;
-//              var  $that=subject.root;
-//               return this.subjects.filter($that,function (sub) {
-//                   if (sub.status){
-//                       return subject;
-//                   }
-//               });
-//
-//                            }
         }
-//        computed: {
-//            toggle: function (subject) {
-//                subject.status = !subject.status;
-////                this.subjects.filter(function () {
-////                        this.allowed.push(togglePassedFor.subject);
-////                });
-//            }
-////            rootIsPassed:function (subject) {
-////                var parent=this.subjects.filter(subject.root);
-////                return parent.status
-////            }
-////
-////            allowed:function () {
-////                return this.subjects.filter(function (subject) {
-////                   return this.rootIsPassed(subject);
-//        }
-
     });
 </script>
 
