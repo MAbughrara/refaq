@@ -59,9 +59,9 @@
                     <div class="panel-heading">المواد المسموح بتنزيلها طبقا لشجرة المواد</div>
                     <div class=" panel-body">
                      <button class="btn btn-warning"
-                             v-for="subject in subjects">
-                             v-for="isAllowed(subject)">
-                         {{sub.name }}
+                             v-for="subject in subjects"
+                             v-if="subject.allowed">
+                         {{subject.name }}
                      </button>
                     </div>
                 </div>
@@ -140,28 +140,44 @@
         methods: {
             togglePassedFor: function (subject) {
                 subject.status = !subject.status;
-                subject.allowed = !subject.allowed;
+                var  that=subject.code;
+                this.subjects.filter(function (sub) {
+                    if (sub.root==that){
+                         sub.allowed=!sub.allowed;
+                    }
+                });
+
+
+//                subject.allowed = !subject.allowed;
 //                this.subjects.filter(function () {
 //                this.allowed.push(subject);
 //                });            }
         },
 
-
+            isAllowed:function (subject) {
+//                var  that=subject.root;
+//                this.subjects.filter(function (sub) {
+//                    if (sub.code==that){
+//                        return sub.status
+//                    }
+//                });
+            }
         },
         computed:{
-            isAllowed:function (subject) {
-//                return this.subjects.filter(subject,function (sub) {
-//                    return subject;
-//                });
-////                return subject.status;
-              var  $that=subject.root;
-               return this.subjects.filter($that,function (sub) {
-                   if (sub.root==$that){
-                       return subject;
-                   }
-               });
 
-                            }
+//            isAllowed:function (subject) {
+////                return this.subjects.filter(subject,function (sub) {
+////                    return subject;
+////                });
+//////                return subject.status;
+//              var  $that=subject.root;
+//               return this.subjects.filter($that,function (sub) {
+//                   if (sub.status){
+//                       return subject;
+//                   }
+//               });
+//
+//                            }
         }
 //        computed: {
 //            toggle: function (subject) {
