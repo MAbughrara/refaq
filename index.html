@@ -1,103 +1,166 @@
 <!DOCTYPE html>
-<html lang="ar" dir="">
+<html lang="en">
 <head>
-	<meta charset="UTF-8">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="">
+	<meta name="author" content="">
 	<title>Title</title>
-    <link href="bootstrap.min.css" rel="stylesheet">
+	<link href="bootstrap.min.css" rel="stylesheet">
+	<script src="vue.js"></script>
 
-	<script src="vue.js">	</script>
+	<style>
+		.btn{
+			margin: 5px;
+		}
+	</style>
 
 </head>
 <body>
 
-<div class="container">
-<div class="row">
 
 <div id="app">
+	<nav class="navbar navbar-default navbar-static-top">
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Collapsed Hamburger -->
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+					<span class="sr-only">القائمة</span>
+				</button>
+				<!-- Branding Image -->
+				<a class="navbar-brand" href="#">
+					جامعة الرفاق-قسم علوم الحاسب                </a>
+			</div>
+		</div>
+	</nav>
 
-<ul class="col-sm-3">
-	<li v-for="subject in subjects" v-text="subject.code"></li>
-</ul>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-1">
+				<div class="panel panel-default">
+					<div class="panel-heading">مواد قسم علوم الحاسوب- اختر المواد التي اجتزتها بنجاح</div>
+					<div class=" panel-body">
+						<button class="btn btn-default"
+								:class="{'btn-success': subject.status}"
+								v-for="subject in subjects"
+								@click='togglePassedFor(subject)'>
+							{{subject.name}}
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 pull-left">
+				<h1>{{subjects.length}}</h1>عدد المواد الكلي
+				<h1>{{passed}}</h1>عدد المواد تم اجتيازها بنجاح
+				<h1>{{42-passed}}</h1>عدد المواد الباقي</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="panel panel-default">
+				<div class="panel-heading">المواد المسموح بتنزيلها طبقا لشجرة المواد</div>
+				<div class=" panel-body">
+					<button class="btn btn-warning"
+							v-for="subject in subjects"
+							v-if="subject.allowed && ! subject.status || subject.root==''"
+					>
+						{{subject.name }}
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </div>
 
-</div>
 
-</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data:{
+            passed:0,
+//            passedUnits:0,
+            subjects: [
+                {code:"GS242",name:"إحصاء واحتمالات",root:"GS100",units:"",status:false,allowed:false},
+                {code:"CS313",name:"إدارة قواعد بيانات",root:"CS211",units:"",status:false,allowed:false},
+
+                {code:"CS201",name:"اساسيات برمجة",root:"",units:"",status:false,allowed:false},
+
+                {code:"CS415",name:"البرمجة الشيئية باستخدام c++",root:"CS207",units:"",status:false,allowed:false},
+                {code:"CS427",name:"الرسم بالحاسوب",root:"CS414",units:"",status:false,allowed:false},
+
+                {code:"GH141",name:"اللغة الانجليزية 1",root:"",units:"",status:false,allowed:false},
+
+                {code:"GH142",name:"لغة انجيليزية 2",root:"GH141",units:"",status:false,allowed:false},
+                {code:"GH150",name:"اللغة العربية",root:"",units:"",status:false,allowed:false},
+
+                {code:"CS414",name:"النمذجة والمحاكاة",root:"CS210",units:"",status:false,allowed:false},
+                {code:"CS210",name:"برمجئة مرئية1 (بيسك)",root:"CS207",units:"",status:false,allowed:false},
 
 
-<script type="text/javascript">
-	
-	var app = new Vue({
-    el: '#app',
-    
-    data:{
-        subjects:[
+                {code:"CS417",name:"برمجئة مرئية2 (VB)",root:"CS210",units:4,status:false,allowed:false},
+                {code:'CS416',name:'برمجة نطم',root:'CS201',units:'',status:false,allowed:false},
 
-            {code:"GS242",name:"إحصاء واحتمالات",root:"GS100",units:""},
-            {code:"CS313",name:"إدارة قواعد بيانات",root:"CS211",units:""},
+                {code:'CS211',name:'تحليل نطم',root:'CS201',units:'',status:false,allowed:false},
+                {code:'CS312',name:'تراكيب بيانات 1',root:'CS207',units:'',status:false,allowed:false},
 
-            {code:"CS201",name:"اساسيات برمجة",root:"",units:""},
+                {code:'CS418',name:'تراكيب بيانات 2',root:'CS312',units:'',status:false,allowed:false},
+                {code:'CS205',name:'تراكيب منفصلة',root:'GS101',units:'',status:false,allowed:false},
 
-            {code:"CS415",name:"البرمجة الشيئية باستخدام c++",root:"CS207",units:""},
-            {code:"CS427",name:"الرسم بالحاسوب",root:"CS414",units:""},
+                {code:'CS423',name:'تصميم مواقع انترنت',root:'CS419',units:'',status:false,allowed:false},
+                {code:'CS303',name:'تنظيم حاسبات',root:'CS204',units:'',status:false,allowed:false},
 
-            {code:"GH141",name:"اللغة الانجليزية 1",root:"",units:""},
+                {code:'GH203',name:'ثقافة إسلامية',root:'',units:'',status:false,allowed:false},
+                {code:'GS209',name:'جبر خطي والمنطق',root:'GS101',units:'',status:false,allowed:false},
 
-            {code:"GH142",name:"لغة انجيليزية 2",root:"GH141",units:""},
-            {code:"GH150",name:"اللغة العربية",root:"",units:""},
+                {code:'CS426',name:'ذكاء اصطناعي',root:'CS418',units:'',status:false,allowed:false},
+                {code:'GS100',name:'رياضة 1',root:'',units:'',status:false,allowed:false},
 
-            {code:"CS414",name:"النمذجة والمحاكاة",root:"CS210",units:""},
-            {code:"CS210",name:"برمجئة مرئية1 (بيسك)",root:"CS207",units:""},
+                {code:'GS101',name:'رياضة 2',root:'GS100',units:'',status:false,allowed:false},
+                {code:'CS425',name:'شبكات حاسوب',root:'CS319',units:'',status:false,allowed:false},
 
-            {code:'CS416',name:'برمجة نطم',root:'CS201',units:''},
+                {code:'CS308',name:'طرق عددية',root:'CS207',units:'',status:false,allowed:false},
+                {code:'CS207',name:'لغة C',root:'CS201',units:'',status:false,allowed:false},
 
-			{code:'CS211',name:'تحليل نطم',root:'CS201',units:''},
-            {code:'CS312',name:'تراكيب بيانات 1',root:'CS207',units:''},
+                {code:'CS319',name:'لغة تجميع ASSEMBLY',root:'CS303',units:'',status:false,allowed:false},
+                {code:'CS419',name:'لغة جافا',root:'CS415',units:'',status:false,allowed:false},
 
-            {code:'CS418',name:'تراكيب بيانات 2',root:'CS312',units:''},
-            {code:'CS205',name:'تراكيب منفصلة',root:'GS101',units:''},
+                {code:'CS320',name:'لغة دلفي',root:'CS313',units:'',status:false,allowed:false},
+                {code:'152',name:'مبادئ العلوم السياسية',root:'',units:'',status:false,allowed:false},
 
-            {code:'CS423',name:'تصميم مواقع انترنت',root:'CS419',units:''},
-            {code:'CS303',name:'تنظيم حاسبات',root:'CS204',units:''},
+                {code:'CS200',name:'مبادئ حاسب',root:'',units:'',status:false,allowed:false},
+                {code:'GS199',name:'مبادئ هندسة كهربائية',root:'',units:'',status:false,allowed:false},
 
-            {code:'GH203',name:'ثقافة إسلامية',root:'',units:''},
-            {code:'GS209',name:'جبر خطي والمنطق',root:'GS101',units:''},
+                {code:'CS321',name:'معماية الحاسوب',root:'CS319',units:'',status:false,allowed:false},
+                {code:'CS204',name:'مقدمة أنظمة رقمية',root:['GS199','CS200'],units:'',status:false,allowed:false},
 
-            {code:'CS426',name:'ذكاء اصطناعي',root:'CS418',units:''},
-            {code:'GS100',name:'رياضة 1',root:'',units:''},
+                {code:'CS430',name:'مناهج البحث والتدريب الميداني',root:'',units:'',status:false,allowed:false},
+                {code:'CS429',name:'مواضيع مختارة 1',root:'',units:'',status:false,allowed:false},
 
-            {code:'GS101',name:'رياضة 2',root:'GS100',units:''},
-            {code:'CS425',name:'شبكات حاسوب',root:'CS319',units:''},
+                {code:'CS428',name:'مواضيع مختارة 2',root:'',units:'',status:false,allowed:false},
+                {code:'CS322',name:'نظم تشغيل',root:'CS318',units:'',status:false,allowed:false},
 
-            {code:'CS308',name:'طرق عددية',root:'CS207',units:''},
-            {code:'CS207',name:'لغة C',root:'CS201',units:''},
+                {code:'CS318',name:'هندسة برمجيات',root:'CS211',units:'',status:false,allowed:false}
 
-            {code:'CS319',name:'لغة تجميع ASSEMBLY',root:'CS303',units:''},
-            {code:'CS419',name:'لغة جافا',root:'CS415',units:''},
+            ],
+        },
+        methods: {
+            togglePassedFor: function (subject) {
+                subject.status = !subject.status;
+                if(subject.status) this.passed=this.passed +1; else this.passed=this.passed-1;
+                var that = subject.code;
+                this.subjects.filter(function (sub) {
+                    if (sub.root == that) {
+                        sub.allowed = !sub.allowed;
+                    }
+                });
+            }
+        }
 
-            {code:'CS320',name:'لغة دلفي',root:'CS313',units:''},
-            {code:'152',name:'مبادئ العلوم السياسية',root:'',units:''},
-
-            {code:'CS200',name:'مبادئ حاسب',root:'',units:''},
-            {code:'GS199',name:'مبادئ هندسة كهربائية',root:'',units:''},
-
-            {code:'CS321',name:'معماية الحاسوب',root:'CS319',units:''},
-            {code:'CS204',name:'مقدمة أنظمة رقمية',root:['GS199','CS200'],units:''},
-
-            {code:'CS430',name:'مناهج البحث والتدريب الميداني',root:'',units:''},
-            {code:'CS429',name:'مواضيع مختارة 1',root:'',units:''},
-
-            {code:'CS428',name:'مواضيع مختارة 2',root:'',units:''},
-            {code:'CS322',name:'نظم تشغيل',root:'CS318',units:''},
-
-            {code:'CS318',name:'هندسة برمجيات',root:'CS211',units:''}
-
-        ]
-
-    }
-
-})
+    });
 </script>
 
 </body>
