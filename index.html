@@ -50,14 +50,18 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-2 pull-left">
-				عدد المواد الكلي
+			<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+				<div class="list-group">
+					<a href="#" class="list-group-item active">قداش</a>
+					عدد المواد الكلي
 				<h1>{{subjects.length}}</h1>
 				عدد المواد تم اجتيازها بنجاح
-				<h1>{{passed}}</h1>
+				<h1>{{passedSubjects}}</h1>
 				عدد المواد الباقي
-				<h1>{{40-passed}}</h1>
+				<h1>{{40-passedSubjects}}</h1>
 			</div>
+			</div>
+
 	</div>
 
 	<div class="row">
@@ -67,13 +71,17 @@
 				<div class=" panel-body">
 					<button class="btn btn-warning"
 							v-for="subject in subjects"
-							v-if="subject.allowed && ! subject.status "
-							v-if="subject.root==''"
+							v-if="(subject.allowed && ! subject.status) || isPassed(subject)"
 					>
 						{{subject.name }}
 					</button>
 				</div>
 			</div>
+		</div>
+		<div class="col-md-2 pull-left">
+			<p>شرط تزيل مادتي البحث الميداني</p>
+			<p1>مشروع التخريج</p1>
+			<h1>يجب تجاوز 115 وحدة</h1>
 		</div>
 	</div>
 
@@ -85,7 +93,7 @@
     var app = new Vue({
         el: '#app',
         data:{
-            passed:0,
+            passedSubjects:0,
             subjects: [
                 {code:'GH203',name:'ثقافة إسلامية',root:'',units:'',status:false,allowed:false},
                 {code:'152',name:'مبادئ العلوم السياسية',root:'',units:'',status:false,allowed:false},
@@ -140,20 +148,25 @@
                 {code:'CS429',name:'مواضيع مختارة 1',root:'',units:'',status:false,allowed:false},
                 {code:'CS428',name:'مواضيع مختارة 2',root:'',units:'',status:false,allowed:false},
 
-                {code:'CS430',name:'مناهج البحث والتدريب الميداني',root:'',units:'',status:false,allowed:false}
+                {code:'CS430',name:'مناهج البحث والتدريب الميداني',root:'',units:'',status:false,allowed:false,required:33}
 
             ],
         },
         methods: {
             togglePassedFor: function (subject) {
                 subject.status = !subject.status;
-                if(subject.status) this.passed=this.passed +1; else this.passed=this.passed-1;
+                if(subject.status) this.passedSubjects=this.passedSubjects +1; else this.passedSubjects=this.passedSubjects-1;
                 var that = subject.code;
                 this.subjects.filter(function (sub) {
                     if (sub.root == that) {
                         sub.allowed = !sub.allowed;
                     }
                 });
+            },
+			isPassed:function (subject) {
+				if(subject.root=='' && !subject.status){
+				    return true;
+				}else return false;
             }
         }
 
