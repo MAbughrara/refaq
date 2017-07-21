@@ -1,7 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:url"           content="http://csdep.moh.ly" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="| قسم علوم الحاسوب" />
+    <meta property="og:description"   content=" " />
+    <meta property="og:image"         content=""/>
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:creator" content="">
+    <meta name="twitter:title" content="جامعة الرفاق - قسم علوم الحاسوب - المواد المسموح بها">
+    <meta name="twitter:description" content=" جامعة الرفاق - قسم علوم الحاسوب  | شارك معنا -  ">
+    <meta name="twitter:image" content="twitter.jpg">
+
+    <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -15,6 +30,31 @@
 		.btn{
 			margin: 5px;
 		}
+		.active{
+			background-color:#f0ad4e !important;
+			border-color: #f0ad4e!important;
+		}
+         .fa-facebook-official{
+             color: rgba(1, 1, 2, 0.56) !important;
+         } .fa-facebook-official:hover{
+               color: #3a5795 !important;
+           }
+        .fa-twitter-square{
+            color: rgba(1, 1, 2, 0.56) !important;
+        }
+        .fa-twitter-square:hover{
+            color: #4dbff7 !important;
+        }
+
+        .content {
+            min-height: calc(100vh - 70px);
+        }
+        .footer {
+            height: 50px;
+            margin-top:40px;
+            bottom: 10px !important;
+        }
+
 	</style>
 
 </head>
@@ -84,17 +124,37 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-2 pull-left">
-			<p>شرط تزيل مادتي البحث الميداني</p>
-			<p1>مشروع التخريج</p1>
-			<h1>يجب تجاوز 115 وحدة</h1>
+		<div class="col-xs-6 col-sm-3 sidebar-offcanvas">
+			<div class="list-group">
+				<a href="#" class="list-group-item active">إشارة</a>
+				<a href="#" class="list-group-item ">
+					<p>شرط تزيل مادتي البحث الميداني</p>
+					<p>مشروع التخريج</p>
+					<p>يجب إنجاز</p>
+					<h1> 115 وحدة</h1>
+				</a>
+
+
+			</div>
 		</div>
 	</div>
 
 </div>
 </div>
 
-
+<div class=" footer bd-footer text-muted" style=" height: 50px;">
+    <div class="container">
+        <hr>
+        <div class = "col-sm-9 copyright">
+            <a href="http://moh.ly">
+                <i class="fa fa-user-circle fa-1x" aria-hidden="true"> </i></a>
+        </div>
+        <div class="col-sm-3">
+            <a href="https://www.facebook.com/mabughrara"><i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i></a>
+            <a href="https://twitter.com/AboGhrara"> <i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></a>
+        </div>
+    </div>
+</div>
 <script>
     var app = new Vue({
         el: '#app',
