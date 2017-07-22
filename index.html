@@ -45,16 +45,30 @@
         .fa-twitter-square:hover{
             color: #4dbff7 !important;
         }
-
-        .content {
-            min-height: calc(100vh - 70px);
-        }
-        .footer {
+		.footer {
             height: 50px;
             margin-top:40px;
             bottom: 10px !important;
         }
 
+		.teal{
+			background-color: #008080;
+			border-color: #777777;
+			color:#ffffff !important;
+		}
+		.green{
+			background-color: #5cb85c;
+			border-color: #4cae4c;
+			color:#ffffff !important;
+		}
+		.red{
+			background-color: #d83737  !important;
+			border-color: #ffffff !important;
+			color:#ffffff !important;
+		}
+		.whit a{
+			color:#ffffff !important;
+		}
 	</style>
 
 </head>
@@ -62,24 +76,21 @@
 
 
 <div id="app">
-	<nav class="navbar navbar-default navbar-static-top">
+	<nav class="navbar navbar-default navbar-static-top whit teal">
 		<div class="container">
 			<div class="navbar-header">
-				<!-- Collapsed Hamburger -->
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-					<span class="sr-only">القائمة</span>
-				</button>
 				<!-- Branding Image -->
-				<a class="navbar-brand" href="#">
-					جامعة الرفاق-قسم علوم الحاسب                </a>
+				<a class="navbar-brand" href="#">جامعة الرفاق- قسم علوم الحاسب </a>
 			</div>
 		</div>
 	</nav>
 	<div class="container">
+		<div class="alert alert-success" role="alert">قم بمعرفة المواد المسموح لك دراستها طبقا لشجرة المواد، بطريقة بسيطة وسريعة</div>
+
 		<div class="row">
 			<div class="col-md-8 col-md-offset-1">
-				<div class="panel panel-default">
-					<div class="panel-heading">مواد قسم علوم الحاسوب- اختر المواد التي اجتزتها بنجاح</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading">قم بالضغط على المواد التي اجتزتها بنجاح</div>
 					<div class=" panel-body">
 						<button class="btn btn-default"
 								:class="{'btn-success': subject.status}"
@@ -90,19 +101,19 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+			<div class="col-xs-6 col-sm-3 sidebar-offcanvas " id="sidebar">
 				<div class="list-group">
-					<a href="#" class="list-group-item active">قداش</a>
+					<a href="#" class="list-group-item green whit">قداش</a>
 					<a href="#" class="list-group-item ">
-						عدد المواد الكلي
+						عدد المواد الكلي:
 						<h1>{{subjects.length}}</h1>
 					</a>
 					<a href="#" class="list-group-item">
-						عدد المواد تم اجتيازها بنجاح
+						عدد المواد تم اجتيازها بنجاح:
 						<h1>{{passedSubjects}}</h1>
 					</a>
 					<a href="#" class="list-group-item">
-						عدد المواد الباقي
+						عدد المواد الباقي:
 						<h1>{{40-passedSubjects}}</h1>
 					</a>
 
@@ -110,12 +121,12 @@
 			</div>
 	</div>
 
-	<div class="row">
+		<div class="row">
 		<div class="col-md-8 col-md-offset-1">
 			<div class="panel panel-default">
-				<div class="panel-heading">المواد المسموح بتنزيلها طبقا لشجرة المواد</div>
+				<div class="panel-heading red whit">المواد المسموح بتنزيلها طبقا لشجرة المواد</div>
 				<div class=" panel-body">
-					<button class="btn btn-warning"
+					<button class="btn btn-danger red whit"
 							v-for="subject in subjects"
 							v-if="(subject.allowed && ! subject.status) || isPassed(subject)"
 					>
@@ -124,18 +135,24 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-6 col-sm-3 sidebar-offcanvas">
-			<div class="list-group">
-				<a href="#" class="list-group-item active">إشارة</a>
-				<a href="#" class="list-group-item ">
-					<p>شرط تزيل مادتي البحث الميداني</p>
-					<p>مشروع التخريج</p>
-					<p>يجب إنجاز</p>
-					<h1> 115 وحدة</h1>
-				</a>
 
 
+		<div class="panel panel-warning col-xs-6 col-sm-3 sidebar-offcanvas">
+			<!-- Default panel contents -->
+			<div class="panel-heading active "style="color: #ffffff;">ملاحظة</div>
+			<div class="panel-body">
+				<p>المواد التي يلزم لتنزيلها استفاء
+				<span style="font-weight: bold;">115 وحدة</span></p>
 			</div>
+
+			<!-- List group -->
+			<ul class="list-group">
+				<li class="list-group-item">مواضيع مختارة1 </li>
+				<li class="list-group-item">مواضيع مختارة 2</li>
+				<li class="list-group-item">مواضيع بحث</li>
+				<li class="list-group-item">مشروع التخرج</li>
+
+			</ul>
 		</div>
 	</div>
 
