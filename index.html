@@ -8,7 +8,7 @@
     <meta property="og:type"          content="website" />
     <meta property="og:title"         content="| قسم علوم الحاسوب" />
     <meta property="og:description"   content=" " />
-    <meta property="og:image"         content=""/>
+    <meta property="og:image"         content="facebook.jpg"/>
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="">
     <meta name="twitter:creator" content="">
@@ -87,8 +87,6 @@
 	<div class="container">
 		<div class="alert alert-success" role="alert">قم بمعرفة المواد المسموح لك دراستها طبقا لشجرة المواد، بطريقة بسيطة وسريعة</div>
 
-		<h1>{{CS200}}|</h1>
-		<h1>{{GS199}}|</h1>
 		<div class="row">
 			<div class="col-md-8 col-md-offset-1">
 				<div class="panel panel-primary">
@@ -102,29 +100,51 @@
 						</button>
 					</div>
 				</div>
+
 			</div>
-			<div class="col-xs-6 col-sm-3 sidebar-offcanvas " id="sidebar">
+			<div class="col-xs-6 col-sm-3 sidebar-offcanvas hidden-xs" id="sidebar">
 				<div class="list-group">
 					<a href="#" class="list-group-item green whit">قداش</a>
 					<a href="#" class="list-group-item ">
 						عدد المواد الكلي:
 						<h1>{{subjects.length}}</h1>
-						<h1>141</h1>
 					</a>
 					<a href="#" class="list-group-item">
 						عدد المواد تم اجتيازها بنجاح:
 						<h1>{{passedSubjects}}</h1>
-						<h1>{{unitsSum}}</h1>
 					</a>
 					<a href="#" class="list-group-item">
 						عدد المواد الباقي:
 						<h1>{{40-passedSubjects}}</h1>
-						<h1>{{141-unitsSum}}</h1>
 					</a>
 
 			</div>
 			</div>
 	</div>
+		<div class="row">
+			<div class="col-md-8 col-md-offset-1">
+				<table class="table table-bordered">
+					<thead>
+					<tr>
+						<th>عدد الوحدات الكلي</th>
+						<th>عدد الوحدات المنجزة</th>
+						<th>عدد الوحدات الباقية</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td>141
+						</td>
+						<td>{{unitsSum}}
+						</td>
+						<td>{{141-unitsSum}}
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+
+			</div>
 
 		<div class="row">
 		<div class="col-md-8 col-md-offset-1">
