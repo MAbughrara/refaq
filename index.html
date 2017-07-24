@@ -87,6 +87,8 @@
 	<div class="container">
 		<div class="alert alert-success" role="alert">قم بمعرفة المواد المسموح لك دراستها طبقا لشجرة المواد، بطريقة بسيطة وسريعة</div>
 
+		<h1>{{CS200}}|</h1>
+		<h1>{{GS199}}|</h1>
 		<div class="row">
 			<div class="col-md-8 col-md-offset-1">
 				<div class="panel panel-primary">
@@ -107,14 +109,17 @@
 					<a href="#" class="list-group-item ">
 						عدد المواد الكلي:
 						<h1>{{subjects.length}}</h1>
+						<h1>141</h1>
 					</a>
 					<a href="#" class="list-group-item">
 						عدد المواد تم اجتيازها بنجاح:
 						<h1>{{passedSubjects}}</h1>
+						<h1>{{unitsSum}}</h1>
 					</a>
 					<a href="#" class="list-group-item">
 						عدد المواد الباقي:
 						<h1>{{40-passedSubjects}}</h1>
+						<h1>{{141-unitsSum}}</h1>
 					</a>
 
 			</div>
@@ -135,7 +140,6 @@
 				</div>
 			</div>
 		</div>
-
 
 		<div class="panel panel-warning col-xs-6 col-sm-3 sidebar-offcanvas">
 			<!-- Default panel contents -->
@@ -177,61 +181,65 @@
         el: '#app',
         data:{
             passedSubjects:0,
-            subjects: [
-                {code:'GH203',name:'ثقافة إسلامية',root:'',units:'',status:false,allowed:false},
-                {code:'152',name:'مبادئ العلوم السياسية',root:'',units:'',status:false,allowed:false},
-                {code:"GH150",name:"اللغة العربية",root:"",units:"",status:false,allowed:false},
+            unitsSum:0,
+            CS200:false,
+            GS199:false,
+    subjects: [
+                {code:'GH203',name:'ثقافة إسلامية',root:'',units:2,status:false,allowed:false},
+                {code:'152',name:'مبادئ العلوم السياسية',root:'',units:2,status:false,allowed:false},
+                {code:"GH150",name:"اللغة العربية",root:"",units:2,status:false,allowed:false},
 
-                {code:"GH141",name:"اللغة الانجليزية 1",root:"",units:"",status:false,allowed:false},
-                {code:"GH142",name:"لغة انجيليزية 2",root:"GH141",units:"",status:false,allowed:false},
+                {code:"GH141",name:"اللغة الانجليزية 1",root:"",units:2,status:false,allowed:false},
+                {code:"GH142",name:"لغة انجيليزية 2",root:"GH141",units:2,status:false,allowed:false},
 
-                {code:'GS100',name:'رياضة 1',root:'',units:'',status:false,allowed:false},
-                {code:'GS101',name:'رياضة 2',root:'GS100',units:'',status:false,allowed:false},
-                {code:'GS209',name:'جبر خطي والمنطق',root:'GS101',units:'',status:false,allowed:false},
-                {code:"GS242",name:"إحصاء واحتمالات",root:"GS100",units:"",status:false,allowed:false},
-                {code:'CS205',name:'تراكيب منفصلة',root:'GS101',units:'',status:false,allowed:false},
+                {code:'GS100',name:'رياضة 1',root:'',units:2,status:false,allowed:false},
+                {code:'GS101',name:'رياضة 2',root:'GS100',units:2,status:false,allowed:false},
+                {code:'GS209',name:'جبر خطي والمنطق',root:'GS101',units:4,status:false,allowed:false},
+                {code:"GS242",name:"إحصاء واحتمالات",root:"GS100",units:4,status:false,allowed:false},
+                {code:'CS205',name:'تراكيب منفصلة',root:'GS101',units:4,status:false,allowed:false},
 
-                {code:'CS200',name:'مبادئ حاسب',root:'',units:'',status:false,allowed:false},
-                {code:'GS199',name:'مبادئ هندسة كهربائية',root:'',units:'',status:false,allowed:false},
-                {code:"CS201",name:"اساسيات برمجة",root:"",units:"",status:false,allowed:false},
+                {code:'CS200',name:'مبادئ حاسب',root:'',units:4,status:false,allowed:false},
+                {code:'GS199',name:'مبادئ هندسة كهربائية',root:'',units:4,status:false,allowed:false},
+                {code:"CS201",name:"اساسيات برمجة",root:"",units:4,status:false,allowed:false},
 
-                {code:'CS207',name:'لغة C',root:'CS201',units:'',status:false,allowed:false},
-                {code:'CS211',name:'تحليل نطم',root:'CS201',units:'',status:false,allowed:false},
-                {code:'CS318',name:'هندسة برمجيات',root:'CS211',units:'',status:false,allowed:false},
-                {code:'CS322',name:'نظم تشغيل',root:'CS318',units:'',status:false,allowed:false},
+                {code:'CS207',name:'لغة C',root:'CS201',units:4,status:false,allowed:false},
+                {code:'CS211',name:'تحليل نطم',root:'CS201',units:4,status:false,allowed:false},
+                {code:'CS318',name:'هندسة برمجيات',root:'CS211',units:4,status:false,allowed:false},
+                {code:'CS322',name:'نظم تشغيل',root:'CS318',units:4,status:false,allowed:false},
 
-                {code:"CS313",name:"إدارة قواعد بيانات",root:"CS211",units:"",status:false,allowed:false},
-                {code:'CS320',name:'لغة دلفي',root:'CS313',units:'',status:false,allowed:false},
+                {code:"CS313",name:"إدارة قواعد بيانات",root:"CS211",units:4,status:false,allowed:false},
+                {code:'CS320',name:'لغة دلفي',root:'CS313',units:4,status:false,allowed:false},
 
-                {code:"CS210",name:"برمجئة مرئية1 (بيسك)",root:"CS207",units:"",status:false,allowed:false},
+                {code:"CS210",name:"برمجئة مرئية1 (بيسك)",root:"CS207",units:4,status:false,allowed:false},
                 {code:"CS417",name:"برمجئة مرئية2 (VB)",root:"CS210",units:4,status:false,allowed:false},
 
-                {code:"CS415",name:"البرمجة الشيئية باستخدام c++",root:"CS207",units:"",status:false,allowed:false},
-                {code:'CS419',name:'لغة جافا',root:'CS415',units:'',status:false,allowed:false},
-                {code:'CS423',name:'تصميم مواقع انترنت',root:'CS419',units:'',status:false,allowed:false},
+                {code:"CS415",name:"البرمجة الشيئية باستخدام c++",root:"CS207",units:4,status:false,allowed:false},
+                {code:'CS419',name:'لغة جافا',root:'CS415',units:4,status:false,allowed:false},
+                {code:'CS423',name:'تصميم مواقع انترنت',root:'CS419',units:4,status:false,allowed:false},
 
-                {code:"CS414",name:"النمذجة والمحاكاة",root:"CS210",units:"",status:false,allowed:false},
-                {code:"CS427",name:"الرسم بالحاسوب",root:"CS414",units:"",status:false,allowed:false},
+                {code:"CS414",name:"النمذجة والمحاكاة",root:"CS210",units:4,status:false,allowed:false},
+                {code:"CS427",name:"الرسم بالحاسوب",root:"CS414",units:4,status:false,allowed:false},
 
-                {code:'CS204',name:'مقدمة أنظمة رقمية',root:['GS199'],units:'',status:false,allowed:false},
-                {code:'CS303',name:'تنظيم حاسبات',root:'CS204',units:'',status:false,allowed:false},
-                {code:'CS319',name:'لغة تجميع ASSEMBLY',root:'CS303',units:'',status:false,allowed:false},
-                {code:'CS425',name:'شبكات حاسوب',root:'CS319',units:'',status:false,allowed:false},
-                {code:'CS321',name:'معماية الحاسوب',root:'CS319',units:'',status:false,allowed:false},
-                {code:'CS416',name:'برمجة نطم',root:'CS321',units:'',status:false,allowed:false},
-
-
-                {code:'CS312',name:'تراكيب بيانات 1',root:'CS207',units:'',status:false,allowed:false},
-                {code:'CS418',name:'تراكيب بيانات 2',root:'CS312',units:'',status:false,allowed:false},
-                {code:'CS426',name:'ذكاء اصطناعي',root:'CS418',units:'',status:false,allowed:false},
+                {code:'CS204',name:'مقدمة أنظمة رقمية',root:['CS2040','GS1990'],units:4,status:false,allowed:false},
+                {code:'CS303',name:'تنظيم حاسبات',root:'CS204',units:4,status:false,allowed:false},
+                {code:'CS319',name:'لغة تجميع ASSEMBLY',root:'CS303',units:4,status:false,allowed:false},
+                {code:'CS425',name:'شبكات حاسوب',root:'CS319',units:4,status:false,allowed:false},
+                {code:'CS321',name:'معماية الحاسوب',root:'CS319',units:4,status:false,allowed:false},
+                {code:'CS416',name:'برمجة نطم',root:'CS321',units:4,status:false,allowed:false},
 
 
-                {code:'CS308',name:'طرق عددية',root:'CS207',units:'',status:false,allowed:false},
+                {code:'CS312',name:'تراكيب بيانات 1',root:'CS207',units:4,status:false,allowed:false},
+                {code:'CS418',name:'تراكيب بيانات 2',root:'CS312',units:4,status:false,allowed:false},
+                {code:'CS426',name:'ذكاء اصطناعي',root:'CS418',units:4,status:false,allowed:false},
 
-                {code:'CS429',name:'مواضيع مختارة 1',root:'',units:'',status:false,allowed:false},
-                {code:'CS428',name:'مواضيع مختارة 2',root:'',units:'',status:false,allowed:false},
 
-                {code:'CS430',name:'مناهج البحث والتدريب الميداني',root:'',units:'',status:false,allowed:false,required:33}
+                {code:'CS308',name:'طرق عددية',root:'CS207',units:4,status:false,allowed:false},
+
+                {code:'CS429',name:'مواضيع مختارة 1',root:'115',units:4,status:false,allowed:false,required:115},
+                {code:'CS428',name:'مواضيع مختارة 2',root:'115',units:4,status:false,allowed:false,required:115},
+
+                {code:'CS430',name:'مناهج البحث والتدريب الميداني',root:'115',units:2,status:false,allowed:false,required:115},
+                {code:'CS431',name:'مشروع التخرج',root:'115',units:4,status:false,allowed:false,required:115}
 
             ],
         },
@@ -239,17 +247,35 @@
             togglePassedFor: function (subject) {
                 subject.status = !subject.status;
                 if(subject.status) this.passedSubjects=this.passedSubjects +1; else this.passedSubjects=this.passedSubjects-1;
-                var that = subject.code;
+                if(subject.status) this.unitsSum=this.unitsSum +subject.units; else this.unitsSum=this.unitsSum-subject.units;
+                var that = subject;
+
                 this.subjects.filter(function (sub) {
-                    if (sub.root == that) {
+                    if (sub.root == that.code) {
                         sub.allowed = !sub.allowed;
                     }
                 });
+
+                if(this.unitsSum >=115){
+                    this.subjects.filter(function (sub) {
+                        if (sub.required ==115)sub.allowed = true;
+                    });
+                }else{
+                    this.subjects.filter(function (sub) {
+                        if (sub.required ==115)sub.allowed = false;
+                    });
+				}
+
+                var CS200=this.CS200;
+                var GS199=this.GS199;
+                 this.subjects.filter(function (sub) {
+                    if(sub.code=='GS199')GS199=  sub.status;
+                    if(sub.code=='CS200') CS200= sub.status;
+                    if (sub.code=='CS204')sub.allowed =(GS199 && CS200 )
+                });
             },
 			isPassed:function (subject) {
-				if(subject.root=='' && !subject.status){
-				    return true;
-				}else return false;
+				    return (subject.root=='' && !subject.status);
             }
         }
 
