@@ -27,6 +27,10 @@
 	<script src="vue.js"></script>
 
 	<style>
+		.panel-primary ,.panel-default{
+			box-shadow:rgb(204, 204, 204) 7px 7px 20px -1px;
+			border-color:#ddd;
+		}
 		.btn{
 			margin: 5px;
 		}
@@ -46,9 +50,6 @@
             color: #4dbff7 !important;
         }
 		.footer {
-            height: 50px;
-            margin-top:40px;
-            bottom: 10px !important;
         }
 
 		.teal{
@@ -133,11 +134,11 @@
 					</thead>
 					<tbody>
 					<tr>
-						<td>141
+						<td>142
 						</td>
 						<td>{{unitsSum}}
 						</td>
-						<td>{{141-unitsSum}}
+						<td>{{142-unitsSum}}
 						</td>
 					</tr>
 					</tbody>
@@ -145,7 +146,7 @@
 			</div>
 
 			</div>
-
+<h1>{{units_sum}}</h1>
 		<div class="row">
 		<div class="col-md-8 col-md-offset-1">
 			<div class="panel panel-default">
@@ -212,13 +213,13 @@
                 {code:"GH141",name:"اللغة الانجليزية 1",root:"",units:2,status:false,allowed:false},
                 {code:"GH142",name:"لغة انجيليزية 2",root:"GH141",units:2,status:false,allowed:false},
 
-                {code:'GS100',name:'رياضة 1',root:'',units:2,status:false,allowed:false},
-                {code:'GS101',name:'رياضة 2',root:'GS100',units:2,status:false,allowed:false},
-                {code:'GS209',name:'جبر خطي والمنطق',root:'GS101',units:4,status:false,allowed:false},
+                {code:'GS100',name:'رياضة 1',root:'',units:3,status:false,allowed:false},
+                {code:'GS101',name:'رياضة 2',root:'GS100',units:3,status:false,allowed:false},
+                {code:'GS209',name:'جبر خطي والمنطق',root:'GS101',units:3,status:false,allowed:false},
                 {code:"GS242",name:"إحصاء واحتمالات",root:"GS100",units:4,status:false,allowed:false},
-                {code:'CS205',name:'تراكيب منفصلة',root:'GS101',units:4,status:false,allowed:false},
+                {code:'CS205',name:'تراكيب منفصلة',root:'GS101',units:3,status:false,allowed:false},
 
-                {code:'CS200',name:'مبادئ حاسب',root:'',units:4,status:false,allowed:false},
+                {code:'CS200',name:'مبادئ حاسب',root:'',units:3,status:false,allowed:false},
                 {code:'GS199',name:'مبادئ هندسة كهربائية',root:'',units:4,status:false,allowed:false},
                 {code:"CS201",name:"اساسيات برمجة",root:"",units:4,status:false,allowed:false},
 
@@ -235,7 +236,7 @@
 
                 {code:"CS415",name:"البرمجة الشيئية باستخدام c++",root:"CS207",units:4,status:false,allowed:false},
                 {code:'CS419',name:'لغة جافا',root:'CS415',units:4,status:false,allowed:false},
-                {code:'CS423',name:'تصميم مواقع انترنت',root:'CS419',units:4,status:false,allowed:false},
+                {code:'CS423',name:'تصميم مواقع انترنت',root:'CS419',units:3,status:false,allowed:false},
 
                 {code:"CS414",name:"النمذجة والمحاكاة",root:"CS210",units:4,status:false,allowed:false},
                 {code:"CS427",name:"الرسم بالحاسوب",root:"CS414",units:4,status:false,allowed:false},
@@ -259,7 +260,7 @@
                 {code:'CS428',name:'مواضيع مختارة 2',root:'115',units:4,status:false,allowed:false,required:115},
 
                 {code:'CS430',name:'مناهج البحث والتدريب الميداني',root:'115',units:2,status:false,allowed:false,required:115},
-                {code:'CS431',name:'مشروع التخرج',root:'115',units:4,status:false,allowed:false,required:115}
+                {code:'',name:'مشروع التخرج',root:'115',units:4,status:false,allowed:false,required:115}
 
             ],
         },
